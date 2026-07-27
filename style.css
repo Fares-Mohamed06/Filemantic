@@ -1,5 +1,5 @@
 /* ==========================================
-   1. Reset & Global Variables
+   1. Reset & Base Styles
    ========================================== */
 * {
     margin: 0;
@@ -16,7 +16,7 @@ body {
 }
 
 /* ==========================================
-   2. Header & Responsive Navigation
+   2. Header & Navigation Bar
    ========================================== */
 .navbar {
     display: flex;
@@ -120,7 +120,6 @@ body {
     border-radius: 50%;
 }
 
-/* User Logged-In Badge */
 .user-badge {
     color: #00f2fe;
     font-weight: 600;
@@ -128,7 +127,7 @@ body {
 }
 
 /* ==========================================
-   3. Hero & Content
+   3. Hero Section
    ========================================== */
 .hero {
     text-align: center;
@@ -168,7 +167,7 @@ body {
 }
 
 /* ==========================================
-   4. Grids (Products & Categories)
+   4. Featured & Category Grids
    ========================================== */
 .featured {
     padding: 40px 5%;
@@ -243,7 +242,7 @@ body {
 }
 
 /* ==========================================
-   5. Authentication Form Page Styles
+   5. Authentication Section
    ========================================== */
 .auth-page {
     display: flex;
