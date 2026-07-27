@@ -3,50 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PREMIUM.store - Authentication</title>
+    <title>PREMIUM.store - Categories</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="auth-page">
+<body>
 
-    <div class="auth-card">
+    <!-- Header Navigation -->
+    <header class="navbar">
         <a href="index.html" class="brand-logo">PREMIUM<span>.store</span></a>
         
-        <!-- Toggle Tabs -->
-        <div class="auth-tabs">
-            <button id="tab-login" class="tab-btn active" onclick="switchTab('login')">Login</button>
-            <button id="tab-register" class="tab-btn" onclick="switchTab('register')">Register</button>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product-category.html" class="active">Categories</a></li>
+                <li><a href="index.html#shop">Shop</a></li>
+            </ul>
+
+            <div id="auth-nav-slot" class="auth-buttons">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="login.html?mode=register" class="btn-register">Register</a>
+            </div>
+
+            <div class="cart-icon-container" id="cart-widget">
+                <span>Cart 🛒</span>
+                <span id="cart-count" class="cart-count">0</span>
+            </div>
         </div>
+    </header>
 
-        <!-- Login Form -->
-        <form id="login-form" class="auth-form active-form">
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="login-email" required placeholder="Enter your email">
+    <!-- Categories Section -->
+    <section class="featured">
+        <h2>Browse by Category</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <h3>Electronics & Tech</h3>
+                <p>Keyboards, mice, and desk accessories.</p>
+                <a href="index.html#shop" class="cta-btn">View Items</a>
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="login-password" required placeholder="Enter password">
+            <div class="category-card">
+                <h3>Audio Gear</h3>
+                <p>High quality headphones and audio equipment.</p>
+                <a href="index.html#shop" class="cta-btn">View Items</a>
             </div>
-            <button type="submit" class="auth-submit-btn">Login</button>
-        </form>
-
-        <!-- Register Form -->
-        <form id="register-form" class="auth-form hidden-form">
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" id="reg-name" required placeholder="Enter full name">
+            <div class="category-card">
+                <h3>Custom Crafted</h3>
+                <p>Unique gadgets and specialized 3D items.</p>
+                <a href="index.html#shop" class="cta-btn">View Items</a>
             </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="reg-email" required placeholder="Enter your email">
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="reg-password" required placeholder="Create password">
-            </div>
-            <button type="submit" class="auth-submit-btn">Create Account</button>
-        </form>
-    </div>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>
