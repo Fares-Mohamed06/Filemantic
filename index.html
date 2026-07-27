@@ -8,27 +8,77 @@
 </head>
 <body>
 
-    <header>
-        <div class="logo">PREMIUM<span>.store</span></div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Shop</a>
-        </nav>
-        <div class="cart-btn">
-            Cart 🛒 <span class="cart-count">0</span>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <a href="index.html" class="brand-logo">PREMIUM<span>.store</span></a>
+        
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+            </ul>
+
+            <!-- Auth Buttons (Login / Register) -->
+            <div id="auth-nav-slot" class="auth-buttons">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="login.html" class="btn-register">Register</a>
+            </div>
+
+            <!-- Cart Widget -->
+            <div class="cart-icon-container" id="cart-widget">
+                <span>Cart 🛒</span>
+                <span id="cart-count" class="cart-count">0</span>
+            </div>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <h1>Next-Gen Shopping Experience</h1>
         <p>Explore elite tech, gadgets, and premium handcrafted items right from your dark screen.</p>
-        <button class="cta-btn">Explore Collection 🚀</button>
+        <a href="#shop" class="cta-btn">Explore Collection 🚀</a>
     </section>
 
-    <section class="featured">
+    <!-- Products Section -->
+    <section class="featured" id="shop">
         <h2>Featured Products</h2>
-        <div class="products-grid">
-            <!-- Product Cards Go Here -->
+        
+        <div class="products-grid" id="products-container">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500" alt="Mechanical Keyboard">
+                </div>
+                <div class="product-info">
+                    <h3>Custom Mechanical Keyboard</h3>
+                    <p class="price">$120.00</p>
+                    <button class="add-to-cart-btn">Add to Cart 🛒</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" alt="Wireless Headphones">
+                </div>
+                <div class="product-info">
+                    <h3>Pro Wireless Headphones</h3>
+                    <p class="price">$199.00</p>
+                    <button class="add-to-cart-btn">Add to Cart 🛒</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500" alt="Gaming Mouse">
+                </div>
+                <div class="product-info">
+                    <h3>Precision Gaming Mouse</h3>
+                    <p class="price">$59.00</p>
+                    <button class="add-to-cart-btn">Add to Cart 🛒</button>
+                </div>
+            </div>
         </div>
     </section>
 
