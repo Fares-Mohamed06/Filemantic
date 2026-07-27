@@ -20,9 +20,16 @@ const products = [
     }
 ];
 
-// App State
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+// Read from LocalStorage directly
+let cart = [];
+let currentUser = null;
+
+try {
+    cart = JSON.parse(localStorage.getItem('cart')) || [];
+    currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+} catch (e) {
+    console.error("LocalStorage error:", e);
+}
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,10 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateAuthUI();
     renderProducts();
 
-    // Check URL query parameters for mode switching (login vs register)
+    // Direct mode check from URL
     const urlParams = new URLSearchParams(window.location.search);
     const mode = urlParams.get('mode');
-
+    
     if (mode === 'register') {
         switchTab('register');
     } else {
@@ -46,8 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
-            currentUser = { email: email, name: email.split('@')[0] };
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            if (!email) return;
+
+            const userObj = { email: email, name: email.split('@')[0] };
+            
+            // Save to LocalStorage FIRST
+            localStorage.setItem('currentUser', JSON.stringify(userObj));
+            
+            // Redirect after saving
             window.location.href = 'index.html';
         });
     }
@@ -59,8 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const name = document.getElementById('reg-name').value;
             const email = document.getElementById('reg-email').value;
-            currentUser = { email: email, name: name };
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+            if (!email || !name) return;
+
+            const userObj = { email: email, name: name };
+
+            // Save to LocalStorage FIRST
+            localStorage.setItem('currentUser', JSON.stringify(userObj));
+
+            // Redirect after saving
             window.location.href = 'index.html';
         });
     }
@@ -85,9 +106,11 @@ function renderProducts() {
     `).join('');
 }
 
-// Cart Logic
+// Cart Logic with Login Check
 function addToCart(productId) {
-    if (!currentUser) {
+    const activeUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+    if (!activeUser) {
         alert('Please login first to add items to your cart!');
         window.location.href = 'login.html';
         return;
@@ -98,6 +121,7 @@ function addToCart(productId) {
         cart.push(product);
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartUI();
+        alert('Item added to cart!');
     }
 }
 
@@ -108,14 +132,16 @@ function updateCartUI() {
     }
 }
 
-// Auth Logic & UI State
+// Dynamic Header User Badge & Auth State
 function updateAuthUI() {
     const authSlot = document.getElementById('auth-nav-slot');
     if (!authSlot) return;
 
-    if (currentUser) {
+    const activeUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (activeUser) {
         authSlot.innerHTML = `
-            <span class="user-badge">Hello, ${currentUser.name}</span>
+            <span class="user-badge">Hello, ${activeUser.name}</span>
             <button class="btn-login" onclick="logout()">Logout</button>
         `;
     } else {
@@ -128,12 +154,11 @@ function updateAuthUI() {
 
 function logout() {
     localStorage.removeItem('currentUser');
-    currentUser = null;
-    updateAuthUI();
+    window.location.reload();
 }
 
-// Switch Login / Register Tabs
-function switchTab(tab) {
+// Global Tab Switcher Function
+window.switchTab = function(tab) {
     const loginForm = document.getElementById('login-form');
     const regForm = document.getElementById('register-form');
     const tabLogin = document.getElementById('tab-login');
@@ -142,14 +167,14 @@ function switchTab(tab) {
     if (!loginForm || !regForm) return;
 
     if (tab === 'login') {
-        loginForm.classList.remove('hidden-form');
-        regForm.classList.add('hidden-form');
+        loginForm.style.display = 'flex';
+        regForm.style.display = 'none';
         if (tabLogin) tabLogin.classList.add('active');
         if (tabReg) tabReg.classList.remove('active');
     } else {
-        regForm.classList.remove('hidden-form');
-        loginForm.classList.add('hidden-form');
+        regForm.style.display = 'flex';
+        loginForm.style.display = 'none';
         if (tabReg) tabReg.classList.add('active');
         if (tabLogin) tabLogin.classList.remove('active');
     }
-}
+};
