@@ -12,20 +12,24 @@
     <header class="navbar">
         <a href="index.html" class="brand-logo">PREMIUM<span>.store</span></a>
         
-        <div class="nav-container">
+        <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-container" id="nav-container">
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="product-category.html">Categories</a></li>
                 <li><a href="#shop">Shop</a></li>
             </ul>
 
-            <!-- Dynamic Auth Slot -->
             <div id="auth-nav-slot" class="auth-buttons">
                 <a href="login.html" class="btn-login">Login</a>
                 <a href="login.html?mode=register" class="btn-register">Register</a>
             </div>
 
-            <!-- Cart Widget -->
             <div class="cart-icon-container" id="cart-widget">
                 <span>Cart 🛒</span>
                 <span id="cart-count" class="cart-count">0</span>
@@ -40,11 +44,11 @@
         <a href="#shop" class="cta-btn">Explore Collection 🚀</a>
     </section>
 
-    <!-- Featured Products -->
+    <!-- Featured Products Grid -->
     <section class="featured" id="shop">
         <h2>Featured Products</h2>
         <div class="products-grid" id="products-container">
-            <!-- Dynamic Products loaded via JS -->
+            <!-- Dynamic products loaded from script.js -->
         </div>
     </section>
 
