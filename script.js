@@ -24,16 +24,24 @@ const products = [
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
 
-// Initialize App
+// Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
     updateCartUI();
     updateAuthUI();
     renderProducts();
 
-    // Login / Register Form Handlers
-    const loginForm = document.getElementById('login-form');
-    const registerForm = document.getElementById('register-form');
+    // Check URL query parameters for mode switching (login vs register)
+    const urlParams = new URLSearchParams(window.location.search);
+    const mode = urlParams.get('mode');
 
+    if (mode === 'register') {
+        switchTab('register');
+    } else {
+        switchTab('login');
+    }
+
+    // Login Form Handler
+    const loginForm = document.getElementById('login-form');
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -44,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Register Form Handler
+    const registerForm = document.getElementById('register-form');
     if (registerForm) {
         registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -56,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Render Products Dynamically
+// Render Products Dynamic Grid
 function renderProducts() {
     const container = document.getElementById('products-container');
     if (!container) return;
@@ -75,8 +85,14 @@ function renderProducts() {
     `).join('');
 }
 
-// Cart Functions
+// Cart Logic
 function addToCart(productId) {
+    if (!currentUser) {
+        alert('Please login first to add items to your cart!');
+        window.location.href = 'login.html';
+        return;
+    }
+
     const product = products.find(p => p.id === productId);
     if (product) {
         cart.push(product);
@@ -92,7 +108,7 @@ function updateCartUI() {
     }
 }
 
-// Auth UI Toggle Header
+// Auth Logic & UI State
 function updateAuthUI() {
     const authSlot = document.getElementById('auth-nav-slot');
     if (!authSlot) return;
@@ -105,7 +121,7 @@ function updateAuthUI() {
     } else {
         authSlot.innerHTML = `
             <a href="login.html" class="btn-login">Login</a>
-            <a href="login.html" class="btn-register">Register</a>
+            <a href="login.html?mode=register" class="btn-register">Register</a>
         `;
     }
 }
@@ -116,22 +132,24 @@ function logout() {
     updateAuthUI();
 }
 
-// Login/Register Tab Switcher
+// Switch Login / Register Tabs
 function switchTab(tab) {
     const loginForm = document.getElementById('login-form');
     const regForm = document.getElementById('register-form');
     const tabLogin = document.getElementById('tab-login');
     const tabReg = document.getElementById('tab-register');
 
+    if (!loginForm || !regForm) return;
+
     if (tab === 'login') {
         loginForm.classList.remove('hidden-form');
         regForm.classList.add('hidden-form');
-        tabLogin.classList.add('active');
-        tabReg.classList.remove('active');
+        if (tabLogin) tabLogin.classList.add('active');
+        if (tabReg) tabReg.classList.remove('active');
     } else {
         regForm.classList.remove('hidden-form');
         loginForm.classList.add('hidden-form');
-        tabReg.classList.add('active');
-        tabLogin.classList.remove('active');
+        if (tabReg) tabReg.classList.add('active');
+        if (tabLogin) tabLogin.classList.remove('active');
     }
 }
