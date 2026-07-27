@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Dark Store</title>
+    
+    <!-- خط الربط الأول: بنقول للـ HTML اقرأ التنسيقات من ملف خارجي اسمه style.css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->A
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">PREMIUM<span>.store</span></a>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Shop</a></li>
+            </ul>
+            <div class="cart-icon-container" id="cart-widget">
+                <span>Cart 🛒</span>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+    
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h2>Next-Gen Shopping Experience</h2>
+        <p>Explore elite tech, gadgets, and premium handcrafted items right from your dark screen.</p>
+        <button class="hero-btn">Explore Collection 🚀</button>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-container">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="products-grid" id="products-grid"></div>
+    </main>
+
+    <!-- Cart Modal (Popup) -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <div class="modal-title">Your Shopping Cart</div>
+            <div class="cart-items-list" id="cart-items-list"></div>
+            <div class="cart-total-section">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="alert('Order Simulation Success!')">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>All Rights Reserved © 2026 - Premium Dark Store</p>
+    </footer>
+
+    <!-- خط الربط الثاني: بنقول للـ HTML شغل العمليات والـ Logic من ملف اسمه script.js -->
+    <script src="script.js"></script>
+</body>
+</html>
