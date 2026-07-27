@@ -1,116 +1,267 @@
-/* Reset */
+/* ==========================================
+   1. Reset & Global Styles
+   ========================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #121214 !important;
-    color: #ffffff !important;
+    background-color: #121214;
+    color: #ffffff;
     line-height: 1.6;
 }
 
-/* Header & Nav Fixes */
-header {
+/* ==========================================
+   2. Responsive Header & Navigation
+   ========================================== */
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 5%;
     background-color: #1a1a1e;
     border-bottom: 1px solid #2d2d32;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.logo {
+.brand-logo {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 800;
     color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 1px;
 }
 
-.logo span {
+.brand-logo span {
     color: #00f2fe;
 }
 
-nav {
+.nav-container {
     display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
     gap: 15px;
 }
 
-nav a {
-    color: #ffffff !important; /* عشان يلغي اللون الأزرق */
+.nav-links a {
+    color: #a0a0ab;
     text-decoration: none;
     font-weight: 500;
+    transition: color 0.3s ease;
 }
 
-.cart-btn {
-    background-color: #26262c;
+.nav-links a:hover {
     color: #ffffff;
-    padding: 8px 14px;
+}
+
+/* Auth Buttons & Cart */
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-login, .btn-register {
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-login {
+    color: #ffffff;
+    border: 1px solid #3f3f46;
+}
+
+.btn-login:hover {
+    background-color: #26262c;
+}
+
+.btn-register {
+    background-color: #00f2fe;
+    color: #000000;
+}
+
+.btn-register:hover {
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+}
+
+.cart-icon-container {
+    background-color: #26262c;
+    padding: 6px 14px;
     border-radius: 8px;
     border: 1px solid #3f3f46;
-    display: inline-flex;
+    font-size: 0.9rem;
+    display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
 }
 
 .cart-count {
     background-color: #00f2fe;
     color: #000000;
     font-weight: bold;
+    font-size: 0.8rem;
     padding: 2px 6px;
     border-radius: 50%;
 }
 
-/* Hero Section */
+/* ==========================================
+   3. Hero Section
+   ========================================== */
 .hero {
     text-align: center;
-    padding: 60px 20px;
+    padding: 70px 20px;
     max-width: 800px;
     margin: 0 auto;
 }
 
 .hero h1 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
+    font-weight: 800;
     margin-bottom: 15px;
-    color: #ffffff;
+    line-height: 1.2;
 }
 
 .hero p {
-    color: #a0a0ab;
+    color: #9e9ea7;
+    font-size: 1.1rem;
     margin-bottom: 25px;
 }
 
 .cta-btn {
+    display: inline-block;
+    text-decoration: none;
     background: transparent;
     color: #ffffff;
     border: 2px solid #00f2fe;
-    padding: 10px 24px;
-    border-radius: 25px;
+    padding: 10px 26px;
     font-size: 1rem;
-    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.3s ease;
 }
 
-/* Featured Products Title */
+.cta-btn:hover {
+    background-color: #00f2fe;
+    color: #000000;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+/* ==========================================
+   4. Products Grid
+   ========================================== */
+.featured {
+    padding: 40px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .featured h2 {
     text-align: center;
-    margin: 30px 0 15px;
-    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 30px;
 }
 
-/* Mobile Responsive */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background-color: #1a1a1e;
+    border: 1px solid #2d2d32;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.product-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.product-info .price {
+    color: #00f2fe;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #26262c;
+    color: #ffffff;
+    border: 1px solid #3f3f46;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #00f2fe;
+    color: #000000;
+}
+
+/* ==========================================
+   5. Perfect Mobile Responsive Rules
+   ========================================== */
 @media (max-width: 768px) {
-    header {
+    .navbar {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
+        padding: 15px;
         text-align: center;
     }
 
-    nav {
-        margin: 5px 0;
+    .nav-container {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .hero {
+        padding: 40px 15px;
     }
 
     .hero h1 {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr; /* يخلي كروت المنتجات تنزل تحت بعض بشيكة على الموبايل */
     }
 }
